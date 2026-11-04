@@ -954,6 +954,7 @@ a {
 
 .spec-table, .fact-table {
   width: 100%;
+  min-width: 0;
   table-layout: fixed;
   border-collapse: collapse;
   margin-top: 16px;
