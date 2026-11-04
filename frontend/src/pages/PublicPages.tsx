@@ -441,20 +441,6 @@ function HeroCarousel({ products, site }: { products: Product[]; site?: SiteSett
               aria-roledescription="slide"
               aria-label={`${index + 1} of ${items.length}`}
             >
-              {/* Real <img> element with object-fit cover and dark scrim */}
-              {product.images?.[0] && (
-                <img
-                  src={product.images[0]}
-                  alt={product.name}
-                  className="hero-slide-bg-img"
-                  width="1200"
-                  height="640"
-                  fetchPriority={index === 0 ? 'high' : undefined}
-                  loading={index === 0 ? 'eager' : 'lazy'}
-                />
-              )}
-              <div className="hero-slide-overlay" />
-
               <div className="site-container hero-slide-inner">
                 <div className="hero-slide-copy">
                   <span className="eyebrow">Since 1989 · Anand, Gujarat</span>
@@ -485,11 +471,24 @@ function HeroCarousel({ products, site }: { products: Product[]; site?: SiteSett
                   </div>
                 </div>
 
-                {!product.images?.[0] && (
-                  <div className="hero-slide-image">
-                    <ProductPlaceholder name={product.name} />
+                <div className="hero-slide-visual">
+                  <div className="hero-image-stage">
+                    {product.images?.[0] ? (
+                      <img
+                        src={product.images[0]}
+                        alt={product.name}
+                        className="hero-machine-img"
+                        width="800"
+                        height="550"
+                        fetchPriority={index === 0 ? 'high' : undefined}
+                        loading={index === 0 ? 'eager' : 'lazy'}
+                      />
+                    ) : (
+                      <ProductPlaceholder name={product.name} />
+                    )}
                   </div>
-                )}
+                </div>
+
                 <strong className="slide-index">
                   {String(index + 1).padStart(2, '0')}
                   <small>/{String(items.length).padStart(2, '0')}</small>
