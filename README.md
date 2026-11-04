@@ -1,7 +1,7 @@
 # Utsav Food Technology
 
 ## Local setup
-1. Run `npm install` from the repository root.
+1. Run `npm install --prefix frontend` from the repository root.
 2. Copy `.env.example` to `frontend/.env.local` and set the Supabase URL and publishable key.
 3. Run `backend/supabase/migrations/whole.sql` once in Supabase SQL Editor.
 4. Create an Auth user, then add its UUID to `public.admin_users` (see the Supabase README).
