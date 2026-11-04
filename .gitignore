@@ -1,0 +1,12 @@
+node_modules
+dist
+frontend/.env
+frontend/.env.local
+frontend/.env.*.local
+.env
+.env.*
+!.env.example
+frontend/dist
+.vercel
+.DS_Store
+*.log
