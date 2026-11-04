@@ -1,44 +1,266 @@
-.hero-carousel{padding:0 0 28px;background:#1e1e1e}
-.hero-brand-fallback{padding:0}
-.hero-brand-inner{min-height:520px;display:flex;align-items:center;justify-content:space-between;gap:60px}
-.hero-brand-copy{max-width:650px}
-.hero-brand-copy h1{font-size:clamp(44px,6vw,78px);line-height:1.02;margin:14px 0 18px}
-.hero-brand-copy>p{color:#ddd;font-size:19px;line-height:1.6;margin:0 0 28px}
-.hero-brand-logo{width:360px;height:360px;display:grid;place-items:center;background:#fff;border:8px solid #fff;box-shadow:0 0 0 1px #f26a1b}
-.hero-brand-logo img{width:100%;height:100%;object-fit:contain}
-.hero-brand-copy .button,.hero-slide-copy .button,.button{text-decoration:none!important}
-.hero-viewport{overflow:hidden}
-.hero-embla{display:flex}
-.hero-slide{position:relative;min-width:100%;min-height:620px;display:flex;align-items:center;background-color:#242424;background-position:center;background-size:cover}
-.hero-slide-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(18,18,18,.9) 0%,rgba(18,18,18,.66) 44%,rgba(18,18,18,.18) 100%)}
-.hero-slide-inner{position:relative;z-index:1;width:min(1200px,calc(100% - 40px));display:flex;align-items:center;min-height:620px}
-.hero-slide-copy{max-width:620px;padding:48px 0}
-.hero-slide-copy .category-label{display:block;margin-top:24px;color:#f26a1b;letter-spacing:.1em}
-.hero-slide-copy h1{font-size:clamp(44px,5.5vw,76px);line-height:1.02;max-width:620px;margin:12px 0 20px}
-.hero-slide-image{width:min(520px,100%);height:360px;margin-left:auto;border:1px solid #f26a1b;background:#faf7f3}
-.hero-slide-image .product-placeholder{width:100%;height:100%;display:grid;place-items:center}
-.hero-slide-image .product-placeholder span{font-size:13px}
-.slide-index{position:absolute;right:calc((100% - min(1200px,calc(100% - 40px)))/2);bottom:30px;color:#c9c6c1;font:700 29px 'Playfair Display',serif}
-.slide-index small{font:500 13px Inter,sans-serif;color:#aaa}
-.hero-controls{display:flex;align-items:center;justify-content:space-between;padding-top:6px}
-.hero-arrow-group{display:flex;gap:8px;margin-left:auto}
-.hero-arrow-group button,.hero-dots button{border:1px solid #6d6965;background:transparent;color:#fff}
-.hero-arrow-group button{width:42px;height:40px;display:grid;place-items:center}
-.hero-arrow-group button:hover{border-color:#f26a1b;color:#f26a1b}
-.hero-dots{display:flex;gap:7px;order:-1}
-.hero-dots button{width:22px;height:4px;padding:0;background:#625f5a;border:0}
-.hero-dots button.active{background:#f26a1b;width:38px}
-.trust-strip{background:#fff}
-.category-block,.product-card{transition:transform .2s ease,box-shadow .2s ease}
-.category-block:hover,.product-card:hover{transform:translateY(-3px);box-shadow:0 10px 24px #1e1e1e12}
-.nav-dropdown{position:relative}
-.dropdown-menu{display:none;position:absolute;top:calc(100% + 15px);right:0;min-width:210px;padding:8px;background:#fff;border:1px solid var(--border);box-shadow:0 8px 18px #1e1e1e18}
-.nav-dropdown:hover .dropdown-menu,.nav-dropdown:focus-within .dropdown-menu{display:block}
-.dropdown-menu a{display:block!important;padding:10px 12px}
-.footer-bottom{display:flex;align-items:center;justify-content:space-between;gap:16px}
-.admin-shell{min-height:100vh}
-.sidebar .logo-badge{width:100%;padding:10px 12px;background:#fff;border-radius:6px;border-top:3px solid var(--orange);box-shadow:0 6px 18px #00000020}
-.sidebar .sidebar-logo{display:block;width:100%;height:104px;margin:0;object-fit:contain;background:transparent}
-.sidebar-label{margin-top:24px}
-@media(max-width:900px){.hero-slide{min-height:560px}.hero-slide-inner{min-height:560px}.hero-slide-copy{max-width:580px}.hero-slide-image{display:none}.hero-slide-overlay{background:linear-gradient(90deg,rgba(18,18,18,.9),rgba(18,18,18,.5))}}
-@media(max-width:760px){.hero-slide,.hero-slide-inner{min-height:600px}.hero-slide-inner{width:min(100% - 28px,1200px)}.hero-slide-copy{padding:35px 0}.hero-slide-copy h1{font-size:43px}.hero-slide-copy .category-label{margin-top:16px}.hero-text{font-size:15px}.slide-index{right:14px;bottom:25px;font-size:23px}.hero-controls{padding-top:0}.hero-dots button{width:16px}.hero-dots button.active{width:28px}.hero-arrow-group button{width:38px;height:36px}.hero-brand-inner{min-height:520px;display:grid;justify-items:center;text-align:center;padding:55px 0 70px;gap:35px}.hero-brand-copy>p{font-size:16px}.hero-brand-logo{width:210px;height:210px;order:-1}.site-container{width:min(100% - 28px,1200px)}.topbar-inner{justify-content:center;gap:12px;flex-wrap:wrap;font-size:10px}.nav-inner{min-height:68px}.brand-logo img{width:58px;height:58px}.mobile-menu{display:block}.nav-inner nav{display:none;position:absolute;top:68px;left:0;right:0;background:#fff;border-bottom:1px solid var(--border);padding:12px 14px;align-items:stretch;flex-direction:column;gap:0;box-shadow:0 8px 18px #1e1e1e12}.nav-inner nav.nav-open{display:flex}.nav-inner nav a{padding:12px 4px}.nav-cta{text-align:center}.nav-dropdown .dropdown-menu{position:static;box-shadow:none;border:0;border-top:1px solid var(--border);margin-top:5px}.nav-dropdown:hover .dropdown-menu{display:none}.nav-dropdown:focus-within .dropdown-menu{display:block}.footer-grid,.contact-grid,.detail-grid,.split-section,.two-panels{grid-template-columns:1fr;gap:30px}.footer-grid{padding-bottom:20px}.footer-bottom{align-items:flex-start;flex-direction:column}.public-section{padding:55px 0}.section-heading h2{font-size:30px}.category-grid,.product-grid{grid-template-columns:1fr}.stats-row{grid-template-columns:repeat(2,1fr);gap:20px}.stats-row div{border:0;padding-left:0}.products-layout{grid-template-columns:1fr;gap:28px}.category-sidebar{display:flex;gap:8px;overflow:auto;padding-bottom:6px}.category-sidebar h3{display:none}.category-sidebar button{min-width:max-content;border:1px solid var(--border);padding:10px 12px}.catalogue-toolbar{gap:12px;align-items:stretch;flex-direction:column}.search-field{max-width:none}.page-banner{padding:45px 0}.public-page-title h1{font-size:40px}.detail-copy h1{font-size:38px}.leadership-block{grid-template-columns:1fr;gap:25px}.hero-brand-copy h1{font-size:42px}.admin-shell{display:block}.sidebar{position:relative;width:100%;height:auto;padding:10px 12px;display:block}.sidebar .logo-badge{display:inline-block;width:64px;padding:5px}.sidebar .sidebar-logo{width:52px;height:52px;margin:0}.sidebar-label{display:none}.sidebar nav{display:flex;gap:6px;overflow-x:auto;margin-top:10px;padding-bottom:2px}.sidebar nav a,.sidebar nav a.active{font-size:12px;white-space:nowrap;padding:9px 11px;border:1px solid #443a34}.sidebar nav a.active{border-left:3px solid var(--orange);padding-left:9px}.sidebar nav a svg{width:15px;height:15px}.logout{position:absolute;right:12px;top:12px;margin:0;padding:9px}.logout span{display:none}.admin-main{padding:24px 14px}.page-header{align-items:flex-start;gap:15px;flex-direction:column}.page-header h1{font-size:32px}.stat-grid{grid-template-columns:1fr 1fr;gap:10px}.stat-card{padding:16px}.stat-card strong{font-size:28px}.panel{padding:14px;overflow:hidden}.table-wrap{margin:0 -4px}.form-grid,.two-col{grid-template-columns:1fr}.modal{padding:18px}.admin-main .filter-bar{flex-direction:column;align-items:stretch}.admin-main .search-field{max-width:none}}
+/* ==========================================================================
+   HERO CAROUSEL & HOME PAGE STYLING - BESPOKE INDUSTRIAL CRAFT
+   ========================================================================== */
+.hero-carousel {
+  padding: 0 0 24px;
+  background: var(--dark);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-brand-fallback {
+  padding: 40px 0;
+}
+
+.hero-brand-inner {
+  min-height: 540px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+}
+
+.hero-brand-copy {
+  max-width: 650px;
+}
+
+.hero-brand-copy h1 {
+  color: #ffffff;
+  font-size: clamp(40px, 5.5vw, 72px);
+  line-height: 1.05;
+  margin: 14px 0 20px;
+}
+
+.hero-brand-copy > p {
+  color: #b5bac5;
+  font-size: 18px;
+  line-height: 1.7;
+  margin: 0 0 32px;
+}
+
+.hero-brand-logo {
+  width: 340px;
+  height: 340px;
+  display: grid;
+  place-items: center;
+  background: #ffffff;
+  border-radius: var(--radius-md);
+  padding: 24px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(224, 89, 21, 0.5);
+}
+
+.hero-brand-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.hero-viewport {
+  overflow: hidden;
+}
+
+.hero-embla {
+  display: flex;
+}
+
+.hero-slide {
+  position: relative;
+  min-width: 100%;
+  min-height: 640px;
+  display: flex;
+  align-items: center;
+  background-color: var(--dark-surface);
+  background-position: center;
+  background-size: cover;
+}
+
+.hero-slide-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(19, 20, 22, 0.94) 0%,
+    rgba(19, 20, 22, 0.8) 48%,
+    rgba(19, 20, 22, 0.35) 100%
+  );
+}
+
+.hero-slide-inner {
+  position: relative;
+  z-index: 2;
+  width: min(1200px, calc(100% - 48px));
+  display: flex;
+  align-items: center;
+  min-height: 640px;
+}
+
+.hero-slide-copy {
+  max-width: 640px;
+  padding: 48px 0;
+}
+
+.hero-slide-copy .category-label {
+  display: inline-block;
+  margin-top: 20px;
+  color: var(--copper);
+  letter-spacing: 0.14em;
+  font-size: 11px;
+}
+
+.hero-slide-copy h1 {
+  color: #ffffff;
+  font-size: clamp(38px, 5.2vw, 68px);
+  line-height: 1.04;
+  margin: 12px 0 20px;
+}
+
+.hero-text {
+  color: #c4c9d4;
+  font-size: 16px;
+  line-height: 1.75;
+  margin-bottom: 24px;
+}
+
+.hero .spec-chips span {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #e4e7ed;
+  font-size: 12px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin-top: 28px;
+}
+
+.hero-slide-image {
+  width: min(480px, 100%);
+  height: 340px;
+  margin-left: auto;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: var(--dark-elevated);
+  overflow: hidden;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+}
+
+.hero-slide-image .product-placeholder {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  color: #8c93a0;
+}
+
+.slide-index {
+  position: absolute;
+  right: calc((100% - min(1200px, calc(100% - 48px))) / 2);
+  bottom: 32px;
+  color: rgba(255, 255, 255, 0.4);
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.slide-index small {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.hero-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+}
+
+.hero-arrow-group {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.hero-arrow-group button {
+  width: 44px;
+  height: 42px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  border-radius: var(--radius-sm);
+  display: grid;
+  place-items: center;
+  transition: all var(--transition-fast);
+}
+
+.hero-arrow-group button:hover {
+  border-color: var(--copper);
+  background: var(--copper);
+  color: #ffffff;
+}
+
+.hero-dots {
+  display: flex;
+  gap: 8px;
+  order: -1;
+}
+
+.hero-dots button {
+  width: 24px;
+  height: 4px;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-full);
+  border: none;
+  transition: all var(--transition-fast);
+}
+
+.hero-dots button.active {
+  background: var(--copper);
+  width: 40px;
+}
+
+/* ==========================================================================
+   RESPONSIVE ADJUSTMENTS FOR HERO & HOME
+   ========================================================================== */
+@media (max-width: 900px) {
+  .hero-slide { min-height: 560px; }
+  .hero-slide-inner { min-height: 560px; }
+  .hero-slide-copy { max-width: 580px; }
+  .hero-slide-image { display: none; }
+}
+
+@media (max-width: 768px) {
+  .hero-slide, .hero-slide-inner {
+    min-height: 520px;
+  }
+  .hero-slide-copy {
+    padding: 36px 0;
+  }
+  .hero-slide-copy h1 {
+    font-size: 34px;
+  }
+  .hero-text {
+    font-size: 15px;
+  }
+  .hero-brand-inner {
+    flex-direction: column-reverse;
+    text-align: center;
+    padding: 40px 0 60px;
+    gap: 30px;
+  }
+  .hero-brand-logo {
+    width: 200px;
+    height: 200px;
+  }
+  .hero-brand-copy h1 {
+    font-size: 36px;
+  }
+  .hero-controls {
+    display: none;
+  }
+}
