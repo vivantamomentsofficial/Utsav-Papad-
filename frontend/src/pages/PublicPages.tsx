@@ -1397,7 +1397,7 @@ export function AboutPage() {
         <div className="site-container">
           <PageTitle
             eyebrow="SINCE 1989"
-            title="A dependable machinery partner from Gujarat"
+            title="Most Trusted Name in Indian Papad Making Machinery and All Types of Food Machinery"
             text="UTSAV FOOD TECHNOLOGY manufactures, exports, trades and supplies durable food processing equipment."
           />
         </div>
