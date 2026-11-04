@@ -1215,48 +1215,50 @@ export function ProductDetail() {
         <div className="site-container detail-grid">
           {/* Media Column */}
           <div className="detail-media-col">
-            <div
-              className="detail-main-image"
-              onClick={() => {
-                if (currentImage) setLightboxOpen(true)
-              }}
-              onKeyDown={(event) => {
-                if ((event.key === 'Enter' || event.key === ' ') && currentImage) {
-                  event.preventDefault()
-                  setLightboxOpen(true)
-                }
-              }}
-              role="button"
-              tabIndex={0}
-              aria-label="Click to zoom image"
-            >
-              {currentImage ? (
-                <>
-                  <img src={currentImage} alt={product.name} width="720" height="540" />
-                  <span className="zoom-hint">
-                    <ZoomIn size={16} /> Click to zoom
-                  </span>
-                </>
-              ) : (
-                <ProductPlaceholder name={product.name} />
+            <div className="detail-media-sticky">
+              <div
+                className="detail-main-image"
+                onClick={() => {
+                  if (currentImage) setLightboxOpen(true)
+                }}
+                onKeyDown={(event) => {
+                  if ((event.key === 'Enter' || event.key === ' ') && currentImage) {
+                    event.preventDefault()
+                    setLightboxOpen(true)
+                  }
+                }}
+                role="button"
+                tabIndex={0}
+                aria-label="Click to zoom image"
+              >
+                {currentImage ? (
+                  <>
+                    <img src={currentImage} alt={product.name} width="720" height="540" />
+                    <span className="zoom-hint">
+                      <ZoomIn size={16} /> Click to zoom
+                    </span>
+                  </>
+                ) : (
+                  <ProductPlaceholder name={product.name} />
+                )}
+              </div>
+
+              {images.length > 1 && (
+                <div className="thumbnail-row">
+                  {images.map((url, index) => (
+                    <button
+                      key={url}
+                      className={index === activeImageIndex ? 'active-thumb' : ''}
+                      onClick={() => setActiveImageIndex(index)}
+                      aria-label={`View photo ${index + 1}`}
+                      type="button"
+                    >
+                      <img src={url} alt={`${product.name} photo ${index + 1}`} width="80" height="64" />
+                    </button>
+                  ))}
+                </div>
               )}
             </div>
-
-            {images.length > 1 && (
-              <div className="thumbnail-row">
-                {images.map((url, index) => (
-                  <button
-                    key={url}
-                    className={index === activeImageIndex ? 'active-thumb' : ''}
-                    onClick={() => setActiveImageIndex(index)}
-                    aria-label={`View photo ${index + 1}`}
-                    type="button"
-                  >
-                    <img src={url} alt={`${product.name} photo ${index + 1}`} width="80" height="64" />
-                  </button>
-                ))}
-              </div>
-            )}
           </div>
 
           {/* Copy & Sticky Actions Column */}
