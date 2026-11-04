@@ -66,7 +66,15 @@ function SectionHeading({ eyebrow, title }: { eyebrow: string; title: string }) 
 function ProductPlaceholder({ name }: { name: string }) {
   return (
     <div className="product-placeholder" aria-label={`${name} image placeholder`}>
-      <svg viewBox="0 0 160 90" aria-hidden="true">
+      <svg
+        viewBox="0 0 160 90"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
         <path d="M22 65h116M35 65V42h90v23M45 42V27h70v15M58 27v-9h44v9M68 65V52h24v13M25 72h110" />
       </svg>
       <span>{name}</span>
@@ -286,7 +294,16 @@ function HeroCarousel({ products, site }: { products: Product[]; site?: SiteSett
       .filter((item) => item.is_active && item.show_in_hero)
       .sort((a, b) => (a.hero_order ?? 0) - (b.hero_order ?? 0))
       .slice(0, 5)
-    return heroSlides.length ? heroSlides : products.filter((item) => item.is_active && item.is_featured).slice(0, 5)
+    if (heroSlides.length) return heroSlides
+
+    const featured = products.filter((item) => item.is_active && item.is_featured).slice(0, 5)
+    if (featured.length) return featured
+
+    // Auto-fallback: If no products marked as hero/featured, show active products with images
+    const withImages = products.filter((item) => item.is_active && item.images && item.images.length > 0).slice(0, 5)
+    if (withImages.length) return withImages
+
+    return products.filter((item) => item.is_active).slice(0, 5)
   }, [products])
 
   const prefersReducedMotion = useMemo(
@@ -468,11 +485,17 @@ function HeroCarousel({ products, site }: { products: Product[]; site?: SiteSett
                   </div>
                 </div>
 
-                {!product.images?.[0] && (
-                  <div className="hero-slide-image">
+                <div className="hero-slide-image">
+                  {product.images?.[0] ? (
+                    <img
+                      src={product.images[0]}
+                      alt={product.name}
+                      loading={index === 0 ? 'eager' : 'lazy'}
+                    />
+                  ) : (
                     <ProductPlaceholder name={product.name} />
-                  </div>
-                )}
+                  )}
+                </div>
                 <strong className="slide-index">
                   {String(index + 1).padStart(2, '0')}
                   <small>/{String(items.length).padStart(2, '0')}</small>
@@ -596,10 +619,11 @@ export function Home() {
     : ['USA', 'Canada', 'UK', 'Sri Lanka', 'Africa', 'New Zealand', 'Australia']
 
   const activeCategories = useMemo(() => categories.filter((c) => c.is_active), [categories])
-  const featuredProducts = useMemo(
-    () => products.filter((p) => p.is_active && p.is_featured).slice(0, 3),
-    [products]
-  )
+  const featuredProducts = useMemo(() => {
+    const featured = products.filter((p) => p.is_active && p.is_featured).slice(0, 3)
+    if (featured.length) return featured
+    return products.filter((p) => p.is_active).slice(0, 3)
+  }, [products])
 
   const orgJsonLd = {
     '@context': 'https://schema.org',
@@ -672,31 +696,43 @@ export function Home() {
           <SectionHeading eyebrow="OUR RANGE" title="Equipment for food processing units" />
           {activeCategories.length ? (
             <div className="category-grid">
-              {activeCategories.map((category) => (
-                <Link
-                  className="category-block"
-                  to={`/products?category=${category.slug}`}
-                  key={category.id}
-                >
-                  {category.image_url ? (
-                    <img
-                      src={category.image_url}
-                      alt={category.name}
-                      width="600"
-                      height="400"
-                      loading="lazy"
-                    />
-                  ) : (
-                    <ProductPlaceholder name={category.name} />
-                  )}
-                  <div>
-                    <h3>{category.name}</h3>
-                    <span>
-                      View products <ChevronRight size={15} />
-                    </span>
-                  </div>
-                </Link>
-              ))}
+              {activeCategories.map((category) => {
+                const categoryCleanName = category.name.trim()
+                const categoryImage =
+                  category.image_url ||
+                  products.find((p) => p.category_id === category.id && p.images?.[0])?.images?.[0] ||
+                  products.find(
+                    (p) =>
+                      p.name.toLowerCase().includes(categoryCleanName.toLowerCase().split(' ')[0]) &&
+                      p.images?.[0]
+                  )?.images?.[0]
+
+                return (
+                  <Link
+                    className="category-block"
+                    to={`/products?category=${category.slug}`}
+                    key={category.id}
+                  >
+                    {categoryImage ? (
+                      <img
+                        src={categoryImage}
+                        alt={categoryCleanName}
+                        width="600"
+                        height="400"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <ProductPlaceholder name={categoryCleanName} />
+                    )}
+                    <div>
+                      <h3>{categoryCleanName}</h3>
+                      <span>
+                        View products <ChevronRight size={15} />
+                      </span>
+                    </div>
+                  </Link>
+                )
+              })}
             </div>
           ) : (
             <EmptyState>No product categories available yet.</EmptyState>
