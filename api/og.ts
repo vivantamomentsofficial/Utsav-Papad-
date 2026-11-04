@@ -16,7 +16,7 @@ export default async function handler(req: IncomingReq, res: OutgoingRes) {
 
   let title = 'Utsav Food Technology - Papad & Food Processing Machinery'
   let description =
-    'Manufacturer and exporter of automatic and semi-automatic papad machines from Vadodara, Gujarat since 1989.'
+    'Manufacturer and exporter of automatic and semi-automatic papad machines from Anand, Gujarat since 1989.'
   let image = `${siteUrl}/logo.jpeg`
   const canonicalUrl = `${siteUrl}${String(path).startsWith('/') ? '' : '/'}${path}`
 

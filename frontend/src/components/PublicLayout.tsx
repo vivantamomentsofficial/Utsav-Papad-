@@ -5,7 +5,6 @@ import {
   Facebook,
   Instagram,
   Linkedin,
-  Lock,
   Mail,
   Menu,
   MessageCircle,
@@ -213,14 +212,6 @@ export function PublicLayout() {
 
         <div className="footer-bottom site-container">
           <span>UTSAV FOOD TECHNOLOGY · Anand, Gujarat · Since 1989</span>
-          <Link
-            className="admin-link"
-            to={session ? '/admin' : '/admin/login'}
-            aria-label={session ? 'Open admin dashboard' : 'Open admin login'}
-          >
-            <Lock size={14} />
-            {session ? 'Admin Dashboard' : 'Admin Login'}
-          </Link>
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             aria-label="Scroll back to top"
