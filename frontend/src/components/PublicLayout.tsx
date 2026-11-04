@@ -37,6 +37,9 @@ export function PublicLayout() {
 
   return (
     <>
+      <a className="skip-link" href="#main-content">
+        Skip to content
+      </a>
       {/* Topbar */}
       <div className="topbar">
         <div className="site-container topbar-inner">
@@ -76,12 +79,14 @@ export function PublicLayout() {
             className="mobile-menu"
             onClick={() => setOpen(!open)}
             aria-label={open ? 'Close menu' : 'Open menu'}
+            aria-expanded={open}
+            aria-controls="primary-navigation"
             type="button"
           >
             {open ? <X size={24} /> : <Menu size={24} />}
           </button>
 
-          <nav className={open ? 'nav-open' : ''}>
+          <nav id="primary-navigation" aria-label="Primary navigation" className={open ? 'nav-open' : ''}>
             <NavLink to="/" end onClick={() => setOpen(false)}>
               Home
             </NavLink>
@@ -118,7 +123,7 @@ export function PublicLayout() {
         </div>
       </header>
 
-      <main className="public-main">
+      <main id="main-content" className="public-main">
         <Outlet />
       </main>
 

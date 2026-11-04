@@ -24,10 +24,11 @@ function ListEditor<T extends { id: string }>({
   rows: T[]
   fields: (row?: Partial<T>) => React.ReactNode
   onSave: (row: Partial<T>) => Promise<void>
-  onDelete: (row: T) => void
+  onDelete: (row: T) => Promise<void>
 }) {
   const [editing, setEditing] = useState<Partial<T> | null>(null)
   const [deleting, setDeleting] = useState<T | null>(null)
+  const [error, setError] = useState('')
   const isDirty = useRef(false)
 
   const handleClose = () => {
@@ -41,9 +42,14 @@ function ListEditor<T extends { id: string }>({
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     const values = Object.fromEntries(new FormData(event.currentTarget))
-    await onSave({ ...editing, ...values } as Partial<T>)
-    isDirty.current = false
-    setEditing(null)
+    setError('')
+    try {
+      await onSave({ ...editing, ...values } as Partial<T>)
+      isDirty.current = false
+      setEditing(null)
+    } catch (submitError) {
+      setError(submitError instanceof Error ? submitError.message : 'Could not save this item.')
+    }
   }
 
   return (
@@ -105,6 +111,7 @@ function ListEditor<T extends { id: string }>({
             }}
           >
             {fields(editing)}
+            {error && <p className="form-alert-error">{error}</p>}
             <Button type="submit">Save</Button>
           </form>
         </Modal>
@@ -113,10 +120,7 @@ function ListEditor<T extends { id: string }>({
         <ConfirmDialog
           title="Delete item?"
           message="This item will be permanently removed."
-          onConfirm={() => {
-            onDelete(deleting)
-            setDeleting(null)
-          }}
+          onConfirm={() => onDelete(deleting).then(() => setDeleting(null))}
           onClose={() => setDeleting(null)}
         />
       )}
@@ -270,7 +274,7 @@ export function About() {
             .mutateAsync({ ...row, display_order: Number(row.display_order ?? 0) })
             .then(() => notify('Timeline milestone saved.'))
         }
-        onDelete={(row) => void timelineCrud.remove.mutateAsync(row.id).then(() => notify('Milestone deleted.'))}
+        onDelete={(row) => timelineCrud.remove.mutateAsync(row.id).then(() => notify('Milestone deleted.'))}
       />
 
       {/* Process Steps CRUD */}
@@ -294,7 +298,7 @@ export function About() {
             .mutateAsync({ ...row, display_order: Number(row.display_order ?? 0) })
             .then(() => notify('Process step saved.'))
         }
-        onDelete={(row) => void processCrud.remove.mutateAsync(row.id).then(() => notify('Process step deleted.'))}
+        onDelete={(row) => processCrud.remove.mutateAsync(row.id).then(() => notify('Process step deleted.'))}
       />
 
       {/* Why Choose Us */}
@@ -318,7 +322,7 @@ export function About() {
             .mutateAsync({ ...row, display_order: Number(row.display_order ?? 0) })
             .then(() => notify('Why Choose Us saved.'))
         }
-        onDelete={(row) => void whyCrud.remove.mutateAsync(row.id).then(() => notify('Item deleted.'))}
+        onDelete={(row) => whyCrud.remove.mutateAsync(row.id).then(() => notify('Item deleted.'))}
       />
 
       {/* Fact Sheet */}
@@ -342,7 +346,7 @@ export function About() {
             .mutateAsync({ ...row, display_order: Number(row.display_order ?? 0) })
             .then(() => notify('Fact sheet saved.'))
         }
-        onDelete={(row) => void factCrud.remove.mutateAsync(row.id).then(() => notify('Item deleted.'))}
+        onDelete={(row) => factCrud.remove.mutateAsync(row.id).then(() => notify('Item deleted.'))}
       />
 
       {/* Site Stats */}
@@ -366,7 +370,7 @@ export function About() {
             .mutateAsync({ ...row, display_order: Number(row.display_order ?? 0) })
             .then(() => notify('Stats saved.'))
         }
-        onDelete={(row) => void statCrud.remove.mutateAsync(row.id).then(() => notify('Item deleted.'))}
+        onDelete={(row) => statCrud.remove.mutateAsync(row.id).then(() => notify('Item deleted.'))}
       />
 
       {notice && <Toast {...notice} onClose={clear} />}
@@ -449,7 +453,7 @@ export function Settings() {
         </div>
       </header>
       <div className="panel">
-        <form className="settings-form" onSubmit={submit}>
+        <form className="settings-form" onSubmit={submit} key={current.id || 'new-settings'}>
           <ImageUploader
             bucket="site-assets"
             label="Company Logo"

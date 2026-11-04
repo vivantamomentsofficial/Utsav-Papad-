@@ -117,27 +117,42 @@ export function ConfirmDialog({
 }: {
   title: string
   message: string
-  onConfirm: () => void
+  onConfirm: () => void | Promise<void>
   onClose: () => void
 }) {
+  const [error, setError] = useState('')
+  const [busy, setBusy] = useState(false)
+
+  async function confirm() {
+    setBusy(true)
+    setError('')
+    try {
+      await onConfirm()
+      onClose()
+    } catch (confirmError) {
+      setError(confirmError instanceof Error ? confirmError.message : 'Could not complete this action.')
+    } finally {
+      setBusy(false)
+    }
+  }
+
   return (
     <Modal title={title} onClose={onClose}>
       <div className="confirm-content">
         <AlertTriangle size={32} color="#F26A1B" />
         <p>{message}</p>
+        {error && <p className="form-alert-error">{error}</p>}
         <div className="modal-actions">
-          <Button variant="secondary" onClick={onClose} type="button">
+          <Button variant="secondary" onClick={onClose} type="button" disabled={busy}>
             Cancel
           </Button>
           <Button
             variant="danger"
-            onClick={() => {
-              onConfirm()
-              onClose()
-            }}
+            onClick={() => void confirm()}
             type="button"
+            disabled={busy}
           >
-            Delete
+            {busy ? 'Working…' : 'Delete'}
           </Button>
         </div>
       </div>

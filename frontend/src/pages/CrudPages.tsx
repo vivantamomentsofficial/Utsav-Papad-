@@ -115,6 +115,7 @@ export function Categories() {
       notify('Category deleted.')
     } catch (error) {
       notify(error instanceof Error ? error.message : 'Could not delete category.', 'error')
+      throw error
     }
   }
 
@@ -223,7 +224,7 @@ export function Categories() {
               ? 'This category has products. They will become uncategorised.'
               : 'This cannot be undone.'
           }
-          onConfirm={() => void deleteCategory()}
+          onConfirm={deleteCategory}
           onClose={() => setDeleting(null)}
         />
       )}
@@ -519,6 +520,7 @@ export function Products() {
       notify('Product deleted.')
     } catch (error) {
       notify(error instanceof Error ? error.message : 'Could not delete product.', 'error')
+      throw error
     }
   }
 
@@ -606,7 +608,7 @@ export function Products() {
         <ConfirmDialog
           title="Delete product?"
           message={`Are you sure you want to delete "${deleting.name}"? This will also remove its photos and brochure.`}
-          onConfirm={() => void deleteProduct()}
+          onConfirm={deleteProduct}
           onClose={() => setDeleting(null)}
         />
       )}
@@ -694,6 +696,7 @@ export function Enquiries() {
       notify('Enquiry deleted.')
     } catch (error) {
       notify(error instanceof Error ? error.message : 'Could not delete enquiry.', 'error')
+      throw error
     }
   }
 
@@ -765,10 +768,18 @@ export function Enquiries() {
                       </select>
                     </td>
                     <td className="actions">
-                      <button onClick={() => void openEnquiry(item)} title="View message">
+                      <button
+                        onClick={() => void openEnquiry(item)}
+                        title="View message"
+                        aria-label="View enquiry message"
+                      >
                         <Eye size={16} />
                       </button>
-                      <button onClick={() => setDeleting(item)} title="Delete enquiry">
+                      <button
+                        onClick={() => setDeleting(item)}
+                        title="Delete enquiry"
+                        aria-label="Delete enquiry"
+                      >
                         <Trash2 size={16} />
                       </button>
                     </td>
@@ -826,7 +837,7 @@ export function Enquiries() {
         <ConfirmDialog
           title="Delete enquiry?"
           message={`Are you sure you want to delete enquiry from ${deleting.name}?`}
-          onConfirm={() => void deleteEnquiry()}
+          onConfirm={deleteEnquiry}
           onClose={() => setDeleting(null)}
         />
       )}

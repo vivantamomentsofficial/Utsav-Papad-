@@ -36,7 +36,7 @@ import { requireSupabase } from '../lib/supabaseClient'
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
 
-const siteUrl = (import.meta.env.VITE_SITE_URL || '').replace(/\/$/, '')
+const siteUrl = (import.meta.env.VITE_SITE_URL || 'https://utsavpapad.vercel.app').replace(/\/$/, '')
 
 function getAbsoluteUrl(path: string): string {
   if (!path) return ''
@@ -193,7 +193,7 @@ function EnquiryForm({ product, onSuccess }: { product?: Product; onSuccess: () 
     const validation = enquirySchema.safeParse(rawValues)
     if (!validation.success) {
       const fieldErrors: Record<string, string> = {}
-      validation.error.issues.forEach((err: any) => {
+      validation.error.issues.forEach((err) => {
         const fieldName = String(err.path[0])
         fieldErrors[fieldName] = err.message
       })
@@ -660,6 +660,10 @@ export function Home() {
         <meta property="og:image" content={getAbsoluteUrl(site?.logo_url || '/logo.jpeg')} />
         <meta name="twitter:card" content="summary_large_image" />
         <script type="application/ld+json">{JSON.stringify(orgJsonLd)}</script>
+        <meta
+          name="keywords"
+          content="papad machine manufacturer, papad making machine, food processing machinery, automatic papad machine, papad plant India, food machinery exporter"
+        />
       </Helmet>
 
       <HeroCarousel products={products} site={site} />
@@ -1107,13 +1111,19 @@ export function ProductDetail() {
   if (isLoading) return <div className="site-container loading">Loading product details…</div>
   if (!product) {
     return (
-      <div className="site-container not-found">
-        <h1>Product not found</h1>
-        <p>The machinery you are looking for is currently unavailable or has been relocated.</p>
-        <Link className="button button-primary" to="/products">
-          Return to catalogue
-        </Link>
-      </div>
+      <>
+        <Helmet>
+          <title>Product not found | Utsav Food Technology</title>
+          <meta name="robots" content="noindex,follow" />
+        </Helmet>
+        <div className="site-container not-found">
+          <h1>Product not found</h1>
+          <p>The machinery you are looking for is currently unavailable or has been relocated.</p>
+          <Link className="button button-primary" to="/products">
+            Return to catalogue
+          </Link>
+        </div>
+      </>
     )
   }
 
@@ -1210,6 +1220,12 @@ export function ProductDetail() {
               onClick={() => {
                 if (currentImage) setLightboxOpen(true)
               }}
+              onKeyDown={(event) => {
+                if ((event.key === 'Enter' || event.key === ' ') && currentImage) {
+                  event.preventDefault()
+                  setLightboxOpen(true)
+                }
+              }}
               role="button"
               tabIndex={0}
               aria-label="Click to zoom image"
@@ -1236,7 +1252,7 @@ export function ProductDetail() {
                     aria-label={`View photo ${index + 1}`}
                     type="button"
                   >
-                    <img src={url} alt="" width="80" height="64" />
+                    <img src={url} alt={`${product.name} photo ${index + 1}`} width="80" height="64" />
                   </button>
                 ))}
               </div>
@@ -1639,13 +1655,19 @@ export function ContactPage() {
 
 export function NotFound() {
   return (
-    <div className="site-container not-found">
-      <p className="eyebrow">404</p>
-      <h1>Page not found</h1>
-      <p>The page you requested does not exist or may have been moved.</p>
-      <Link className="button button-primary" to="/">
-        Return home
-      </Link>
-    </div>
+    <>
+      <Helmet>
+        <title>Page not found | Utsav Food Technology</title>
+        <meta name="robots" content="noindex,follow" />
+      </Helmet>
+      <div className="site-container not-found">
+        <p className="eyebrow">404</p>
+        <h1>Page not found</h1>
+        <p>The page you requested does not exist or may have been moved.</p>
+        <Link className="button button-primary" to="/">
+          Return home
+        </Link>
+      </div>
+    </>
   )
 }
