@@ -28,5 +28,10 @@
     "@vitejs/plugin-react": "^4.4.1",
     "typescript": "^5.7.3",
     "vite": "^6.1.0"
+  },
+  "overrides": {
+    "react-helmet-async": {
+      "react": "$react"
+    }
   }
 }
