@@ -14,5 +14,8 @@ jobs:
         with:
           node-version: 20
           cache: npm
-      - run: npm ci --prefix frontend
+          cache-dependency-path: |
+            package-lock.json
+            frontend/package-lock.json
+      - run: npm install --prefix frontend --legacy-peer-deps
       - run: npm run build
