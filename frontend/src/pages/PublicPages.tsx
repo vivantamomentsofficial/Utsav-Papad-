@@ -1211,7 +1211,7 @@ export function ProductDetail() {
         </div>
       )}
 
-      <section className="public-section">
+      <section className="public-section product-detail-section">
         <div className="site-container detail-grid">
           {/* Media Column */}
           <div className="detail-media-col">
