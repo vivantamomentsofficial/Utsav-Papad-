@@ -4,7 +4,7 @@
   "outputDirectory": "frontend/dist",
   "rewrites": [
     {
-      "source": "/products/(?<slug>[^/]+)",
+      "source": "/products/:slug",
       "has": [
         {
           "type": "header",

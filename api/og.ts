@@ -1,6 +1,14 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node'
+interface IncomingReq {
+  query: Record<string, string | string[] | undefined>
+}
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+interface OutgoingRes {
+  setHeader(name: string, value: string): this
+  status(code: number): this
+  send(body: string): this
+}
+
+export default async function handler(req: IncomingReq, res: OutgoingRes) {
   const { slug, path = '/' } = req.query
   const supabaseUrl = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL
   const supabaseAnonKey = process.env.SUPABASE_ANON_KEY || process.env.VITE_SUPABASE_ANON_KEY
