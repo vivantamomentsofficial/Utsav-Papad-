@@ -1,8 +1,13 @@
-import { requireSupabase } from '../lib/supabase'
-import type { Enquiry } from '../lib/types'
+import { requireSupabase } from '../lib/supabaseClient'
 
-export async function createEnquiry(values: Partial<Enquiry>) {
-  const { data, error } = await requireSupabase().from('enquiries').insert(values).select().single()
+export async function createEnquiry(values: {
+  name: string
+  email: string
+  phone?: string | null
+  country?: string | null
+  message: string
+  product_id?: string | null
+}) {
+  const { error } = await requireSupabase().from('enquiries').insert(values)
   if (error) throw error
-  return data as Enquiry
 }

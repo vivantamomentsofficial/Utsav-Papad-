@@ -1,1 +1,1 @@
-export { uploadImage, removeImage, uploadPdf } from '../services/storage'
+export { uploadImage, removeImage, removeImages, uploadPdf } from '../services/storage'

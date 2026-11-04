@@ -1,5 +1,5 @@
 /* ==========================================================================
-   HERO CAROUSEL & HOME PAGE STYLING - BESPOKE INDUSTRIAL CRAFT
+   HERO CAROUSEL & HOME PAGE STYLING (D1 & BRAND RULES)
    ========================================================================== */
 .hero-carousel {
   padding: 0 0 24px;
@@ -8,12 +8,29 @@
   overflow: hidden;
 }
 
+/* Thin timed progress bar at the top of hero */
+.hero-progress-track {
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.12);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.hero-progress-fill {
+  height: 100%;
+  background: var(--orange);
+  transition: width 0.06s linear;
+}
+
 .hero-brand-fallback {
   padding: 40px 0;
 }
 
 .hero-brand-inner {
-  min-height: 540px;
+  min-height: 520px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -32,21 +49,21 @@
 }
 
 .hero-brand-copy > p {
-  color: #b5bac5;
+  color: #ccc;
   font-size: 18px;
-  line-height: 1.7;
-  margin: 0 0 32px;
+  line-height: 1.6;
+  margin: 0 0 28px;
 }
 
 .hero-brand-logo {
-  width: 340px;
-  height: 340px;
+  width: 320px;
+  height: 320px;
   display: grid;
   place-items: center;
   background: #ffffff;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
   padding: 24px;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(224, 89, 21, 0.5);
+  border: 1px solid var(--orange);
 }
 
 .hero-brand-logo img {
@@ -63,26 +80,37 @@
   display: flex;
 }
 
+/* Slide with real <img> and dark photo scrim */
 .hero-slide {
   position: relative;
   min-width: 100%;
   min-height: 640px;
   display: flex;
   align-items: center;
-  background-color: var(--dark-surface);
-  background-position: center;
-  background-size: cover;
+  background-color: var(--dark);
+  overflow: hidden;
 }
 
+.hero-slide-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* Dark photo scrim on hero (allowed exception) */
 .hero-slide-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     90deg,
-    rgba(19, 20, 22, 0.94) 0%,
-    rgba(19, 20, 22, 0.8) 48%,
-    rgba(19, 20, 22, 0.35) 100%
+    rgba(30, 30, 30, 0.95) 0%,
+    rgba(30, 30, 30, 0.82) 48%,
+    rgba(30, 30, 30, 0.35) 100%
   );
+  z-index: 1;
 }
 
 .hero-slide-inner {
@@ -102,48 +130,58 @@
 .hero-slide-copy .category-label {
   display: inline-block;
   margin-top: 20px;
-  color: var(--copper);
-  letter-spacing: 0.14em;
+  color: var(--orange);
+  letter-spacing: 0.12em;
   font-size: 11px;
 }
 
 .hero-slide-copy h1 {
   color: #ffffff;
   font-size: clamp(38px, 5.2vw, 68px);
-  line-height: 1.04;
+  line-height: 1.05;
   margin: 12px 0 20px;
 }
 
 .hero-text {
-  color: #c4c9d4;
+  color: #ddd;
   font-size: 16px;
-  line-height: 1.75;
+  line-height: 1.7;
   margin-bottom: 24px;
 }
 
 .hero .spec-chips span {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #e4e7ed;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #eee;
   font-size: 12px;
 }
 
 .hero-actions {
   display: flex;
-  gap: 14px;
+  gap: 12px;
   align-items: center;
   margin-top: 28px;
+}
+
+.hero .button-secondary {
+  color: #ffffff !important;
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.hero .button-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #ffffff;
 }
 
 .hero-slide-image {
   width: min(480px, 100%);
   height: 340px;
   margin-left: auto;
-  border-radius: var(--radius-md);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  background: var(--dark-elevated);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--orange);
+  background: #faf7f3;
   overflow: hidden;
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
 }
 
 .hero-slide-image .product-placeholder {
@@ -152,13 +190,13 @@
   display: grid;
   place-items: center;
   background: transparent;
-  color: #8c93a0;
+  color: #888;
 }
 
 .slide-index {
   position: absolute;
   right: calc((100% - min(1200px, calc(100% - 48px))) / 2);
-  bottom: 32px;
+  bottom: 28px;
   color: rgba(255, 255, 255, 0.4);
   font-family: var(--font-display);
   font-size: 32px;
@@ -186,21 +224,20 @@
 }
 
 .hero-arrow-group button {
-  width: 44px;
-  height: 42px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.05);
+  width: 42px;
+  height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: transparent;
   color: #ffffff;
   border-radius: var(--radius-sm);
   display: grid;
   place-items: center;
-  transition: all var(--transition-fast);
+  transition: all 0.15s;
 }
 
 .hero-arrow-group button:hover {
-  border-color: var(--copper);
-  background: var(--copper);
-  color: #ffffff;
+  border-color: var(--orange);
+  color: var(--orange);
 }
 
 .hero-dots {
@@ -210,23 +247,20 @@
 }
 
 .hero-dots button {
-  width: 24px;
+  width: 22px;
   height: 4px;
   padding: 0;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.25);
   border-radius: var(--radius-full);
   border: none;
-  transition: all var(--transition-fast);
+  transition: all 0.15s;
 }
 
 .hero-dots button.active {
-  background: var(--copper);
-  width: 40px;
+  background: var(--orange);
+  width: 38px;
 }
 
-/* ==========================================================================
-   RESPONSIVE ADJUSTMENTS FOR HERO & HOME
-   ========================================================================== */
 @media (max-width: 900px) {
   .hero-slide { min-height: 560px; }
   .hero-slide-inner { min-height: 560px; }

@@ -10,7 +10,6 @@ import { AboutPage, ContactPage, Home, NotFound, ProductDetail, ProductsPage } f
 import './styles.css'
 import './home.css'
 import { ErrorBoundary } from './components/ErrorBoundary'
-import { useRealtimeSync } from './hooks/useRealtimeSync'
 
 // Lazy load admin pages so public site visitors get blazing-fast bundle speeds
 const Login = lazy(() => import('./pages/Login').then((m) => ({ default: m.Login })))
@@ -34,7 +33,6 @@ const queryClient = new QueryClient({
 })
 
 function App() {
-  useRealtimeSync()
   return (
     <Suspense fallback={<div className="site-container loading">Loading…</div>}>
       <Routes>

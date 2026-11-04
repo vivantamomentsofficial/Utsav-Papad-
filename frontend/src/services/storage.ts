@@ -14,12 +14,31 @@ export async function uploadImage(bucket: 'product-images' | 'category-images' |
   if (error) throw error
   return client.storage.from(bucket).getPublicUrl(path).data.publicUrl
 }
+
 export async function removeImage(bucket: string, url: string) {
-  const marker = `/storage/v1/object/public/${bucket}/`; const path = url.split(marker)[1]
+  if (!url) return
+  const marker = `/storage/v1/object/public/${bucket}/`
+  const path = url.split(marker)[1]
   if (!path) return
-  const { error } = await requireSupabase().storage.from(bucket).remove([path])
-  if (error) throw error
+  try {
+    await requireSupabase().storage.from(bucket).remove([path])
+  } catch (err) {
+    console.warn(`Failed to remove file from ${bucket}:`, err)
+  }
 }
+
+export async function removeImages(bucket: string, urls: string[]) {
+  if (!urls?.length) return
+  const marker = `/storage/v1/object/public/${bucket}/`
+  const paths = urls.map((u) => u.split(marker)[1]).filter(Boolean) as string[]
+  if (!paths.length) return
+  try {
+    await requireSupabase().storage.from(bucket).remove(paths)
+  } catch (err) {
+    console.warn(`Failed to remove files from ${bucket}:`, err)
+  }
+}
+
 export async function uploadPdf(bucket: 'brochures' | 'site-assets', file: File) {
   if (file.type !== 'application/pdf') throw new Error('Only PDF files are allowed.')
   if (file.size > 15 * 1024 * 1024) throw new Error('PDF files must be 15 MB or smaller.')

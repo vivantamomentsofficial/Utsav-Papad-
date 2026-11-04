@@ -42,6 +42,9 @@ export interface AboutContent {
 export interface WhyChooseUs { id: string; title: string; description: string | null; display_order: number }
 export interface FactSheet { id: string; label: string; value: string; display_order: number }
 export interface SiteStat { id: string; label: string; value: string; display_order: number }
+export interface TimelineItem { id: string; year: string; title: string; description: string | null; display_order: number }
+export interface ProcessStep { id: string; title: string; description: string | null; display_order: number }
+
 export interface SiteSettings {
   id: string
   logo_url: string | null
@@ -57,8 +60,8 @@ export interface SiteSettings {
   seo_title: string | null
   seo_description: string | null
   footer_text: string | null
+  export_markets?: string[]
 }
-export interface ProcessStep { id: string; title: string; description: string | null; display_order: number }
 
 export interface Enquiry {
   id: string
