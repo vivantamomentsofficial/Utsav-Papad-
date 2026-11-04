@@ -1336,6 +1336,10 @@ a {
 
 .desktop-sidebar {
   display: flex;
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+  height: 100vh;
 }
 
 .sidebar-drawer-overlay {
@@ -1349,6 +1353,9 @@ a {
   border-radius: var(--radius-sm);
   border-top: 3px solid var(--orange);
   margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .sidebar-logo {
