@@ -379,7 +379,7 @@ function HeroCarousel({ products, site }: { products: Product[]; site?: SiteSett
       <section className="hero hero-carousel hero-brand-fallback">
         <div className="site-container hero-brand-inner">
           <div className="hero-brand-copy">
-            <span className="eyebrow">Since 1989 · Vadodara, Gujarat</span>
+            <span className="eyebrow">Since 1989 · Anand, Gujarat</span>
             <h1>{site?.company_name || 'UTSAV FOOD TECHNOLOGY'}</h1>
             <p>{site?.tagline || 'Papad and food processing machinery since 1989'}</p>
             <Link className="button button-primary" to="/products">
@@ -457,9 +457,9 @@ function HeroCarousel({ products, site }: { products: Product[]; site?: SiteSett
 
               <div className="site-container hero-slide-inner">
                 <div className="hero-slide-copy">
-                  <span className="eyebrow">Since 1989 · Vadodara, Gujarat</span>
+                  <span className="eyebrow">Since 1989 · Anand, Gujarat</span>
                   <span className="category-label">
-                    {product.categories?.name || 'UTSAV FOOD TECHNOLOGY'}
+                    {product.categories?.name ? product.categories.name.trim() : 'UTSAV FOOD TECHNOLOGY'}
                   </span>
                   <h1>{product.name}</h1>
                   <p className="hero-text">{product.short_description}</p>
@@ -485,17 +485,11 @@ function HeroCarousel({ products, site }: { products: Product[]; site?: SiteSett
                   </div>
                 </div>
 
-                <div className="hero-slide-image">
-                  {product.images?.[0] ? (
-                    <img
-                      src={product.images[0]}
-                      alt={product.name}
-                      loading={index === 0 ? 'eager' : 'lazy'}
-                    />
-                  ) : (
+                {!product.images?.[0] && (
+                  <div className="hero-slide-image">
                     <ProductPlaceholder name={product.name} />
-                  )}
-                </div>
+                  </div>
+                )}
                 <strong className="slide-index">
                   {String(index + 1).padStart(2, '0')}
                   <small>/{String(items.length).padStart(2, '0')}</small>
@@ -635,7 +629,7 @@ export function Home() {
     email: site?.email || 'info@utsavpapadmachine.com',
     address: {
       '@type': 'PostalAddress',
-      addressLocality: 'Vadodara',
+      addressLocality: 'Anand',
       addressRegion: 'Gujarat',
       addressCountry: 'India',
     },
@@ -650,7 +644,7 @@ export function Home() {
           name="description"
           content={
             site?.seo_description ||
-            'Manufacturer and exporter of automatic and semi-automatic papad making machines from Vadodara, Gujarat since 1989.'
+            'Manufacturer and exporter of automatic and semi-automatic papad making machines from Anand, Gujarat since 1989.'
           }
         />
         <link rel="canonical" href={getAbsoluteUrl('/')} />
@@ -925,7 +919,7 @@ export function ProductsPage() {
         <meta property="og:title" content="Food Processing Machinery Catalogue | Utsav Food Technology" />
         <meta
           property="og:description"
-          content="Explore our commercial food processing machinery range manufactured in Vadodara, Gujarat."
+          content="Explore our commercial food processing machinery range manufactured in Anand, Gujarat."
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={getAbsoluteUrl('/products')} />
@@ -1388,13 +1382,13 @@ export function AboutPage() {
         <title>About Us | Utsav Food Technology</title>
         <meta
           name="description"
-          content="Learn about Utsav Food Technology, manufacturing durable papad making machinery in Vadodara, Gujarat since 1989."
+          content="Learn about Utsav Food Technology, manufacturing durable papad making machinery in Anand, Gujarat since 1989."
         />
         <link rel="canonical" href={getAbsoluteUrl('/about')} />
         <meta property="og:title" content="About Us | Utsav Food Technology" />
         <meta
           property="og:description"
-          content="Food processing machinery manufacturing since 1989 in Vadodara, Gujarat."
+          content="Food processing machinery manufacturing since 1989 in Anand, Gujarat."
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={getAbsoluteUrl('/about')} />
@@ -1429,7 +1423,7 @@ export function AboutPage() {
             ) : (
               <div>
                 <strong>1989</strong>
-                <span>Company established in Vadodara, Gujarat</span>
+                <span>Company established in Anand, Gujarat</span>
               </div>
             )}
           </div>
@@ -1540,7 +1534,7 @@ export function ContactPage() {
   const cleanWhatsapp = site?.whatsapp?.replace(/\D/g, '') || ''
   const whatsappUrl = cleanWhatsapp ? `https://wa.me/${cleanWhatsapp}` : ''
 
-  const mapsQuery = encodeURIComponent(site?.address || 'Utsav Food Technology Vadodara Gujarat')
+  const mapsQuery = encodeURIComponent(site?.address || 'Utsav Food Technology Anand Gujarat')
   const directionsUrl = `https://www.google.com/maps/search/?api=1&query=${mapsQuery}`
 
   return (

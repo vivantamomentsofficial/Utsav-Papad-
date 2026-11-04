@@ -181,6 +181,9 @@ export function PublicLayout() {
             <Link to="/about">About Company</Link>
             <Link to="/contact">Factory Location</Link>
             <Link to="/contact">Request Quotation</Link>
+            <Link to={session ? '/admin' : '/admin/login'}>
+              {session ? 'Admin Dashboard' : 'Admin Login'}
+            </Link>
           </div>
 
           <div>
@@ -209,7 +212,7 @@ export function PublicLayout() {
         </div>
 
         <div className="footer-bottom site-container">
-          <span>UTSAV FOOD TECHNOLOGY · Vadodara, Gujarat · Since 1989</span>
+          <span>UTSAV FOOD TECHNOLOGY · Anand, Gujarat · Since 1989</span>
           <Link
             className="admin-link"
             to={session ? '/admin' : '/admin/login'}

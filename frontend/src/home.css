@@ -127,9 +127,14 @@
   padding: 48px 0;
 }
 
+.hero-slide-copy .eyebrow {
+  display: block;
+  margin-bottom: 6px;
+}
+
 .hero-slide-copy .category-label {
   display: inline-block;
-  margin-top: 20px;
+  margin-top: 8px;
   color: var(--orange);
   letter-spacing: 0.12em;
   font-size: 11px;

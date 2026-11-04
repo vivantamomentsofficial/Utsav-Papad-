@@ -478,7 +478,7 @@ export function Settings() {
             <textarea
               name="address"
               rows={3}
-              defaultValue={current.address ?? 'Vadodara, Gujarat, India'}
+              defaultValue={current.address ?? 'Anand, Gujarat, India'}
             />
           </label>
 
