@@ -118,7 +118,7 @@ export function PublicLayout() {
         </div>
       </header>
 
-      <main>
+      <main className="public-main">
         <Outlet />
       </main>
 

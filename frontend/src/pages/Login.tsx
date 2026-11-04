@@ -81,6 +81,9 @@ export function Login() {
           <Link className="forgot" to="/admin/forgot-password">
             Forgot password?
           </Link>
+          <Link className="login-home" to="/">
+            Back to home
+          </Link>
         </section>
       </main>
     </>

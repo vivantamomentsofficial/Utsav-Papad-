@@ -57,6 +57,10 @@ p {
   margin: 0 0 1rem;
 }
 
+.public-main p {
+  text-align: center;
+}
+
 img, svg {
   display: block;
   max-width: 100%;
@@ -298,6 +302,18 @@ a {
   color: var(--orange);
   font-size: 13px;
   margin-top: 20px;
+}
+
+.login-home {
+  display: block;
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 12px;
+}
+
+.login-home:hover {
+  color: var(--orange);
 }
 
 /* ==========================================================================
@@ -1362,6 +1378,7 @@ a {
   padding: 38px 44px;
   max-width: 1400px;
   width: 100%;
+  min-width: 0;
   overflow-x: hidden;
 }
 
@@ -1371,6 +1388,7 @@ a {
   justify-content: space-between;
   margin-bottom: 28px;
   gap: 20px;
+  flex-wrap: wrap;
 }
 
 .page-header h1 {
@@ -1415,6 +1433,7 @@ a {
   border-radius: var(--radius-sm);
   padding: 26px;
   margin-bottom: 24px;
+  min-width: 0;
 }
 
 .panel-header {
@@ -1422,6 +1441,8 @@ a {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 18px;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 .panel h2 {
@@ -1459,6 +1480,18 @@ td {
   padding: 14px;
   border-bottom: 1px solid var(--border-subtle);
   vertical-align: top;
+  overflow-wrap: anywhere;
+}
+
+td strong,
+td small {
+  display: block;
+}
+
+td small {
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 4px;
 }
 
 tr:hover td {
@@ -1518,6 +1551,16 @@ tr:hover td {
   gap: 12px;
   margin-bottom: 20px;
   flex-wrap: wrap;
+}
+
+.form-grid {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.form-grid > * {
+  min-width: 0;
 }
 
 .filter-bar select {
@@ -2044,8 +2087,35 @@ tr:hover td {
     padding: 24px 16px 80px;
   }
 
+  .page-header {
+    align-items: flex-start;
+  }
+
+  .page-header .button {
+    width: 100%;
+  }
+
   .mobile-admin-header {
     margin: -24px -16px 20px -16px;
+  }
+
+  .panel {
+    padding: 18px 14px;
+  }
+
+  .enquiries-toolbar {
+    align-items: stretch;
+  }
+
+  .enquiries-toolbar .search-field,
+  .enquiries-toolbar select,
+  .enquiries-toolbar .button {
+    width: 100%;
+    max-width: none;
+  }
+
+  .modal {
+    padding: 22px 16px;
   }
 
   /* SHOW Mobile Action Bar ONLY on Mobile */
@@ -2075,5 +2145,28 @@ tr:hover td {
 
   .floating-whatsapp {
     display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-page {
+    padding: 16px;
+  }
+
+  .login-card {
+    padding: 32px 20px;
+  }
+
+  .login-logo {
+    width: 96px;
+    height: 96px;
+  }
+
+  .page-header h1 {
+    font-size: 28px;
+  }
+
+  .table-wrap {
+    margin: 0 -2px;
   }
 }
