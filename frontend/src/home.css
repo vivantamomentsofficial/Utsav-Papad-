@@ -178,8 +178,8 @@
 
 .hero-image-stage {
   width: 100%;
-  height: 100%;
-  max-height: 440px;
+  height: 460px;
+  max-height: none;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -192,10 +192,10 @@
 }
 
 .hero-machine-img {
+  width: 100%;
+  height: 100%;
   max-width: 100%;
-  max-height: 400px;
-  width: auto;
-  height: auto;
+  max-height: 100%;
   object-fit: contain !important;
   display: block;
   margin: 0 auto;
@@ -288,7 +288,7 @@
     gap: 32px;
     min-height: 520px;
   }
-  .hero-machine-img { max-height: 320px; }
+  .hero-image-stage { height: 380px; }
 }
 
 @media (max-width: 768px) {
@@ -314,14 +314,14 @@
   }
 
   .hero-image-stage {
-    max-height: 250px;
+    height: 320px;
     padding: 12px;
     background: rgba(255, 255, 255, 0.04);
   }
 
   .hero-machine-img {
-    max-height: 220px;
     width: 100%;
+    height: 100%;
     object-fit: contain !important;
   }
 

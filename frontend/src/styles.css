@@ -803,6 +803,10 @@ a {
   align-items: start;
 }
 
+.detail-grid > * {
+  min-width: 0;
+}
+
 .detail-main-image {
   background: #ffffff;
   aspect-ratio: 4/3;
@@ -868,6 +872,7 @@ a {
 .detail-copy h1 {
   font-size: clamp(2rem, 3.2vw, 2.8rem);
   margin: 10px 0 14px;
+  overflow-wrap: anywhere;
 }
 
 .detail-sticky-card {
@@ -909,6 +914,7 @@ a {
   color: var(--muted);
   line-height: 1.75;
   margin-bottom: 14px;
+  overflow-wrap: anywhere;
 }
 
 .formatted-list {
